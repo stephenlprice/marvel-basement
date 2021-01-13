@@ -37,7 +37,7 @@ https://lucid.app/lucidchart/112cf8cd-16e6-41f6-a40f-9c3f34b0d98c/edit?page=0_0#
 ### Specifications
 1. APIs
 Marvel API: https://developer.marvel.com/docs 
-Giphy API: https://developers.giphy.com/ 
+Giphy API: https://developers.giphy.com/  
 
 2. CSS Frameworks
 Semantic UI: https://semantic-ui.com/behaviors/api.html
