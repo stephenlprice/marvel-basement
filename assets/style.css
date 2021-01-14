@@ -2,6 +2,13 @@
     font-family: 'Bangers', cursive;
 } */
 
-body {
+#mainHeader {
     font-family: 'Bangers', cursive;
+    background-color: red;
 }
+
+#descriptionCard {
+    font-family: 'Bangers', cursive;
+    background-color: red;
+}
+
