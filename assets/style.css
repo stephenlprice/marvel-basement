@@ -2,6 +2,30 @@
     font-family: 'Bangers', cursive;
 } */
 
-body {
+#mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars {
     font-family: 'Bangers', cursive;
+    background-color: red;
+    font-size: x-large;
 }
+
+/* #wholeCard {
+    background: blanchedalmond;
+    background-size: cover;
+    height: 100%;
+    /* overflow: hidden; */  
+} */
+
+#heroGif {
+    margin-top: 1%;
+}
+
+#popCharsTitle {
+    margin-left: 1%;
+}
+
+html {
+    background: url(images/marvel-bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    /* overflow: hidden; */
+  }

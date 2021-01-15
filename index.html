@@ -1,69 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" 
-    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <!-- Google Fonts Bangers -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
     <!-- Add Header, Main and sections inside of Main -->
     <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Marvel Basement</a>
-          <!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
-          </ul> -->
+        <div class="nav-wrapper" id="mainHeader">
+            <a href="#" class="brand-logo center">Marvel Basement</a>
         </div>
     </nav>
+    <br>
 
-    <!-- content -->
     <div class="container">
-        <!-- search and favs -->
+        <!-- DAVE STUFF GOES HERE!!!!!! -->
         <div class="row">
-            <div class="col m6">
-
+            <div class="col s6 m6 l6">
+                <nav>
+                    <div class="nav-wrapper">
+                        <!-- Search Bar -->
+                        <form>
+                            <div class="input-field" id="searchField">
+                                <input id="search" type="search" required placeholder="search for heroes...">
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
             </div>
-            <div class="col m6">
 
+            <div class="col s6 m6 l6">
+                <!-- Favorites and Dropdown/Hamburger -->
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="#!">one</a></li>
+                    <li><a href="#!">two</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#!">three</a></li>
+                </ul>
+                <nav>
+                    <div class="nav-wrapper" id="favHeroes">
+                        <ul class="right">
+                            <!-- Dropdown Trigger -->
+                            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">favorites<i
+                                        class="material-icons right">menu</i></a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s12 m12 l12" id="wholeCard">
+                <div class="col s12 m12 l12">
+                    <div class="col s12 m6 l6">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <!-- Meta Data -->
+                                <div class="card" id="metaData">
+                                    <div class="card-content white-text">
+                                        <span class="card-title">Meta Data</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quis
+                                            accusantium fuga delectus minus error odio excepturi, cum incidunt corporis
+                                            necessitatibus, eligendi perferendis blanditiis magni adipisci aut, amet
+                                            minima.
+                                            Possimus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <!-- Hero Stats -->
+                                <div class="card" id="heroStats">
+                                    <div class="card-content white-text">
+                                        <span class="card-title">Stats</span>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quae
+                                            maiores
+                                            odit impedit et dolorum distinctio nobis libero nesciunt culpa accusantium,
+                                            a
+                                            quod ut ad necessitatibus nam hic, dicta nihil.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6 l6">
+                        <!-- Gif Area -->
+                        <div class="card-image center" id="heroGif">
+                            <img src="https://placehold.it/400">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <!-- Description Area -->
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text" id="descriptionCard">
+                                <span class="card-title">Description</span>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis temporibus officia
+                                    numquam
+                                    rem cupiditate accusantium sed officiis mollitia iusto! Nesciunt, eos voluptatibus.
+                                    Cumque
+                                    iste quo eveniet laudantium deleniti, totam quam?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <nav>
+                            <div class="nav-wrapper" id="popChars">
+                                <a href="#" class="brand-logo" id="popCharsTitle">Popular Characters:</a>
+                                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                    <li><a href="sass.html">Iron Man</a></li>
+                                    <li><a href="badges.html">The Hulk</a></li>
+                                    <li><a href="collapsible.html">Wolverine</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
             </div>
 
         </div>
-        <!-- gif and metadata -->
-        <div class="row">
-            <div class="col m6">
-
-            </div>
-            <div class="col m6">
-
-            </div>
-            
-        </div>
-        <!-- character description -->
-        <div class="row">
-            
-        </div>
-        <!-- popular characters -->
-        <div class="row">
-            
-        </div>
-
-
     </div>
-
-            
-
 
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -72,4 +153,5 @@
     <!-- Scripts -->
     <script src="./assets/script.js"></script>
 </body>
+
 </html>
