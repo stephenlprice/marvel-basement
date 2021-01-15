@@ -412,6 +412,19 @@ var marvel = {
     }
   }
 
+// Meta Data------------------
+function hulkInitial() {
+  $("#heroName").text(marvel.data.results[0].name)
+  $("#descriptionText").text(marvel.data.results[0].description);
+  $("#heroNumbers").append(/*html*/`<p>Comics: ${marvel.data.results[0].comics.available}</p>`);
+  $("#heroNumbers").append(/*html*/`<p>Series: ${marvel.data.results[0].series.available}</p>`);
+  $("#heroNumbers").append(/*html*/`<p>Stories: ${marvel.data.results[0].stories.available}</p>`);
+  $("#heroNumbers").append(/*html*/`<p>Events: ${marvel.data.results[0].events.available}</p>`);
+
+  //------------------Need Hulk GIF------------------
+}
+hulkInitial();
+
 // Sample Giphy Request for a Hulk Gif
 // https://api.giphy.com/v1/gifs/random?api_key=DDFZ1a8NNQfa6GQa23FoUELp6Ltmh0qI&tag=hulk&rating=g
 
