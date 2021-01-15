@@ -1,11 +1,5 @@
-// Initialization for dropdown/hamburger------------------------------------https://materializecss.com/dropdown.html
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
-  });
-
-  // Or with jQuery
-  $('.dropdown-trigger').dropdown();
+// Dropdown Button
+$('.dropdown-trigger').dropdown();
 
 // Sample Marvel Object
 var marvel = {
