@@ -5,7 +5,7 @@
 #mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars {
     font-family: 'Bangers', cursive;
     background-color: red;
-    font-size: x-large;
+    font:100;
 }
 
 /* #wholeCard {
