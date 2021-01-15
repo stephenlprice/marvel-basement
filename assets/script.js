@@ -415,6 +415,9 @@ var marvel = {
 // Sample Giphy Request for a Hulk Gif
 // https://api.giphy.com/v1/gifs/random?api_key=DDFZ1a8NNQfa6GQa23FoUELp6Ltmh0qI&tag=hulk&rating=g
 
+// variable to put in response
+var gifUrl = $("#heroGif").attr("src", giphy.data.url);
+
 // Sample Hulk Gif from Giphy
 var giphy = {
     "data":
