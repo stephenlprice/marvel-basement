@@ -29,6 +29,13 @@ $("i#clearSearch").on("click", function(event) {
   $("input#search").val("");
 });
 
+// Calls searchCharacter() with the provided 'data-character' attribute from Popular Characters
+$("ul#nav-mobile li a").on("click", function(event) {
+  event.preventDefault();
+  var character = $(this).attr("data-character");
+  searchCharacter(character);
+});
+
 // Uses value from search form and calls on getCharacter
 function searchCharacter(character) {
   if (!character || character === null || character === undefined || character === "") {
