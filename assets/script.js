@@ -54,6 +54,9 @@ function getCharacter(character) {
   var preferHeader = "code=200, example=" + character;
   var path = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5007456/v1/public/characters?";
 
+  // Settings for prod server requests (remove the "headers" section in settings)
+  // var path = "https://gateway.marvel.com:443/v1/public/characters?";
+
   var params = {
     name: character,
     apikey: "ba771d6381f28dcffac6f36592d1949b"
@@ -63,7 +66,7 @@ function getCharacter(character) {
 
   console.log(url);
 
-  const settingsMock = {
+  const settings = {
     "async": true,
     "crossDomain": true,
     "url": url,
@@ -73,7 +76,7 @@ function getCharacter(character) {
     }
   };
   
-  $.ajax(settingsMock).done(function (response) {
+  $.ajax(settings).done(function (response) {
     console.log(response);
     // TODO: We should save the response to local storage so that clicking on a favorite avoids API calls
     renderCharacter(response);
@@ -97,6 +100,9 @@ function getGif(character) {
   // Settings for mock server requests
   var preferHeader = "code=200, example=" + character;
   var path = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5009495/gifs/search?";
+
+  // Settings for prod server requests (remove the "headers" section in settings)
+  // var path = "https://api.giphy.com/v1/gifs/search?";
 
   var params = {
     q: character,
