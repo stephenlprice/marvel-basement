@@ -1,5 +1,22 @@
 // Dropdown Button
 $('.dropdown-trigger').dropdown();
+var character = "hulk";
+
+// Initialize the page with preset data
+function init() {
+  // Todo use the most recent character saved to local storage
+  getCharacter(character);
+  rendergif();
+}
+
+// Gets the value inserted into the search input and makes requests for data
+$("form#searchForm").on("submit", function(event) {
+  event.preventDefault();
+  // TODO empty all elements from previous character
+  var character = $("input#search").val().trim();
+   console.log(character);
+  getCharacter(character);
+});
 
 // Sample Marvel Object
 var marvel = {
@@ -412,6 +429,32 @@ var marvel = {
     }
   }
 
+function getCharacter(character) {
+
+  // Settings for mock server requests
+  var preferHeader = "code=200, example=" + character;
+  var path = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5007456/v1/public/characters";
+  var name = "?name=" + character;
+  var app = "&apikey=";
+  var cred = "ba771d6381f28dcffac6f36592d1949b";
+
+  var url = path + name + app + cred;
+
+  const settingsMock = {
+    "async": true,
+    "crossDomain": true,
+    "url": url,
+    "method": "GET",
+    "headers": {
+      "Prefer": preferHeader
+    }
+  };
+  
+  $.ajax(settingsMock).done(function (response) {
+    console.log(response);
+  });
+}
+
 // Meta Data------------------
 function hulkInitial() {
   $("#heroName").text(marvel.data.results[0].name)
@@ -673,4 +716,5 @@ function rendergif() {
     $("iframe#heroGif").attr("src", gifURL);
     console.log(gifURL);
 };
-rendergif();
+
+init();
