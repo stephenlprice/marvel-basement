@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.png">
 </head>
 
 <body>
@@ -28,25 +29,25 @@
         </nav>
 
     </div>
-
+    <!-- Search Bar -->
     <div class="container">
-
         <div class="row">
             <div class="col s6 m6 l6">
                 <nav>
                     <div class="nav-wrapper">
                         <!-- Search Bar -->
-                        <form>
+                        <form id="searchForm">
                             <div class="input-field" id="searchField">
                                 <input id="search" type="search" required placeholder="search for heroes...">
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
+                                <i id="clearSearch" class="material-icons">close</i>
                             </div>
                         </form>
                     </div>
                 </nav>
             </div>
 
+            <!-- Favorite Characters -->
             <div class="col s6 m6 l6">
                 <!-- Favorites and Dropdown/Hamburger -->
                 <ul id="dropdown1" class="dropdown-content">
@@ -67,20 +68,22 @@
             </div>
         </div>
 
+        <!-- Character Info -->
         <div class="row">
-
             <div class="col s12 m12 l12" id="wholeCard">
                 <div class="col s12 m12 l12">
                     <div class="row">
                         <div class="col s12 m6 l6">
-                            <!-- Meta Data -->
-                            <div class="card" id="metaData">
-                                <div class="card-content white-text" id="heroNumbers">
-                                    <span class="card-title" id="heroName">Meta Data</span>
+                             <!-- Meta Data -->
+                                <div class="card" id="metaData">
+                                    <div class="card-content white-text">
+                                        <h4 id="heroName"></h4>
+                                        <h5></h5>
+                                        <div id="heroNumbers">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
+                                  
                         <div class="col s12 m6 l6">
                             <!-- Gif Area -->
                             <div class="col s12 m12 l12">
@@ -90,7 +93,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col s12 m12 l12">
                             <!-- Description Area -->
@@ -100,11 +102,10 @@
                                     <p id="descriptionText"></p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                          </div>
+                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="row">
@@ -112,20 +113,24 @@
                 <nav id="makeGone">
                     <!-- Popular Character Suggestions -->
                     <div class="nav-wrapper" id="popChars">
-                        <a href="#" class="brand-logo" id="popCharsTitle">Popular Characters:</a>
-                        <ul id="nav-mobile" class="right hide-on-small-and-down">
-                            <li><a href="sass.html">Iron Man</a></li>
-                            <li><a href="badges.html">Dr. Doom</a></li>
-                            <li><a href="collapsible.html">Wolverine</a></li>
+                        <a class="brand-logo" id="popCharsTitle">Popular Characters:</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a data-character="iron man">Iron Man</a></li>
+                            <li><a data-character="hulk">Hulk</a></li>
+                            <li><a data-character="thor">Thor</a></li>
+                            <li><a data-character="spider-man">Spider-Man</a></li>
+                            <li><a data-character="wolverine">Wolverine</a></li>
                         </ul>
                     </div>
                 </nav>
 
                 <ul id="slide-out" class="sidenav">
                     <li><a href="#!" class="white-text">Popular Characters: </a></li>
-                    <li><a class="waves-effect white-text" href="#!">Iron Man</a></li>
-                    <li><a class="waves-effect white-text" href="#!">Dr. Doom</a></li>
-                    <li><a class="waves-effect white-text" href="#!">Wolverine</a></li>
+                    <li><a class="waves-effect white-text" data-character="iron man">Iron Man</a></li>
+                    <li><a class="waves-effect white-text" data-character="hulk">Hulk</a></li>
+                    <li><a class="waves-effect white-text" data-character="thor">Thor</a></li>
+                    <li><a class="waves-effect white-text" data-character="spider-man">Spider-Man</a></li>
+                    <li><a class="waves-effect white-text" data-character="wolverine">Wolverine</a></li>
                 </ul>
             </div>
         </div>
