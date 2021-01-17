@@ -1,13 +1,13 @@
-// Dropdown Button
-$('.dropdown-trigger').dropdown();
 var character = "hulk";
 
 // Initialize the page with preset data
 function init() {
   // Todo use the most recent character saved to local storage
   getCharacter(character);
-  rendergif();
+  getGif(character);
 }
+// Dropdown Button that displays Favorite Characters
+$('.dropdown-trigger').dropdown();
 
 // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
 $("form#searchForm").on("submit", function(event) {
@@ -15,11 +15,18 @@ $("form#searchForm").on("submit", function(event) {
   var character = $("input#search").val().trim();
   searchCharacter(character);
 });
+
 // Calls searchCharacter() when a user clicks on the search icon
 $("label.label-icon").on("click", function(event) {
   event.preventDefault();
   var character = $("input#search").val().trim();
   searchCharacter(character);
+});
+
+// Clear the search bar of text
+$("i#clearSearch").on("click", function(event) {
+  event.preventDefault();
+  $("input#search").val("");
 });
 
 // Uses value from search form and calls on getCharacter
@@ -30,9 +37,11 @@ function searchCharacter(character) {
   else {
     console.log(character);
     getCharacter(character);
+    getGif(character);
   }
 }
 
+// Makes a request for character information from the Marvel API
 function getCharacter(character) {
   // Settings for mock server requests
   var preferHeader = "code=200, example=" + character;
@@ -59,7 +68,7 @@ function getCharacter(character) {
   
   $.ajax(settingsMock).done(function (response) {
     console.log(response);
-    // TODO: We should save the response to local storage for favorites to reduce API calls
+    // TODO: We should save the response to local storage so that clicking on a favorite avoids API calls
     renderCharacter(response);
   });
 }
@@ -69,259 +78,54 @@ function renderCharacter(marvel) {
   emptyContent();
   $("#heroName").text(marvel.data.results[0].name)
   $("#descriptionText").text(marvel.data.results[0].description);
+  $("div.card-content h5").text("Appears In:");
   $("#heroNumbers").append(/*html*/`<p>Comics: ${marvel.data.results[0].comics.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Series: ${marvel.data.results[0].series.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Stories: ${marvel.data.results[0].stories.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Events: ${marvel.data.results[0].events.available}</p>`);
 }
 
-// Sample Hulk Gif from Giphy
-var giphy = {
-    "data":
-    [
-        {
-            "type": "gif",
-            "id": "xFBnkMvpTM6m4",
-            "url": "https://giphy.com/gifs/hulk-the-xFBnkMvpTM6m4",
-            "slug": "hulk-the-xFBnkMvpTM6m4",
-            "bitly_gif_url": "http://gph.is/1KgscaF",
-            "bitly_url": "http://gph.is/1KgscaF",
-            "embed_url": "https://giphy.com/embed/xFBnkMvpTM6m4",
-            "username": "",
-            "source": "http://www.comicvine.com/forums/battles-7/hulk-and-the-thing-vs-darkseid-1643403/",
-            "title": "hulk smash GIF",
-            "rating": "g",
-            "content_url": "",
-            "source_tld": "www.comicvine.com",
-            "source_post_url": "http://www.comicvine.com/forums/battles-7/hulk-and-the-thing-vs-darkseid-1643403/",
-            "is_sticker": 0,
-            "import_datetime": "2015-05-18 21:25:03",
-            "trending_datetime": "1970-01-01 00:00:00",
-            "images":
-            {
-                "original":
-                {
-                    "height": "355",
-                    "width": "500",
-                    "size": "1526270",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.gif",
-                    "mp4_size": "275163",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.mp4",
-                    "webp_size": "371678",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.webp",
-                    "frames": "24",
-                    "hash": "4c6efbe36f743ea0cb91991e735809b1"
-                },
-                "downsized":
-                {
-                    "height": "355",
-                    "width": "500",
-                    "size": "1526270",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.gif"
-                },
-                "downsized_large":
-                {
-                    "height": "355",
-                    "width": "500",
-                    "size": "1526270",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.gif"
-                },
-                "downsized_medium":
-                {
-                    "height": "355",
-                    "width": "500",
-                    "size": "1526270",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.gif"
-                },
-                "downsized_small":
-                {
-                    "height": "250",
-                    "width": "353",
-                    "mp4_size": "44523",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy-downsized-small.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy-downsized-small.mp4"
-                },
-                "downsized_still":
-                {
-                    "height": "355",
-                    "width": "500",
-                    "size": "1526270",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy_s.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy_s.gif"
-                },
-                "fixed_height":
-                {
-                    "height": "200",
-                    "width": "282",
-                    "size": "355044",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200.gif",
-                    "mp4_size": "66755",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200.mp4",
-                    "webp_size": "134942",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200.webp"
-                },
-                "fixed_height_downsampled":
-                {
-                    "height": "200",
-                    "width": "282",
-                    "size": "100877",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200_d.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200_d.gif",
-                    "webp_size": "58208",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200_d.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200_d.webp"
-                },
-                "fixed_height_small":
-                {
-                    "height": "100",
-                    "width": "141",
-                    "size": "124582",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100.gif",
-                    "mp4_size": "24274",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100.mp4",
-                    "webp_size": "59762",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100.webp"
-                },
-                "fixed_height_small_still":
-                {
-                    "height": "100",
-                    "width": "141",
-                    "size": "5982",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100_s.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100_s.gif"
-                },
-                "fixed_height_still":
-                {
-                    "height": "200",
-                    "width": "282",
-                    "size": "15487",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200_s.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200_s.gif"
-                },
-                "fixed_width":
-                {
-                    "height": "142",
-                    "width": "200",
-                    "size": "313910",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200w.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200w.gif",
-                    "mp4_size": "39698",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200w.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200w.mp4",
-                    "webp_size": "89630",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200w.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200w.webp"
-                },
-                "fixed_width_downsampled":
-                {
-                    "height": "142",
-                    "width": "200",
-                    "size": "78784",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200w_d.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200w_d.gif",
-                    "webp_size": "34188",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200w_d.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200w_d.webp"
-                },
-                "fixed_width_small":
-                {
-                    "height": "71",
-                    "width": "100",
-                    "size": "78389",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100w.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100w.gif",
-                    "mp4_size": "16225",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100w.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100w.mp4",
-                    "webp_size": "39370",
-                    "webp": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100w.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100w.webp"
-                },
-                "fixed_width_small_still":
-                {
-                    "height": "71",
-                    "width": "100",
-                    "size": "4033",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/100w_s.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=100w_s.gif"
-                },
-                "fixed_width_still":
-                {
-                    "height": "142",
-                    "width": "200",
-                    "size": "13252",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/200w_s.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=200w_s.gif"
-                },
-                "looping":
-                {
-                    "mp4_size": "1134102",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy-loop.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy-loop.mp4"
-                },
-                "original_still":
-                {
-                    "height": "355",
-                    "width": "500",
-                    "size": "89885",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy_s.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy_s.gif"
-                },
-                "original_mp4":
-                {
-                    "height": "340",
-                    "width": "480",
-                    "mp4_size": "275163",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy.mp4"
-                },
-                "preview":
-                {
-                    "height": "266",
-                    "width": "375",
-                    "mp4_size": "30699",
-                    "mp4": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy-preview.mp4?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy-preview.mp4"
-                },
-                "preview_gif":
-                {
-                    "height": "60",
-                    "width": "85",
-                    "size": "49815",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy-preview.gif?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy-preview.gif"
-                },
-                "preview_webp":
-                {
-                    "height": "156",
-                    "width": "220",
-                    "size": "41786",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/giphy-preview.webp?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=giphy-preview.webp"
-                },
-                "480w_still":
-                {
-                    "height": "341",
-                    "width": "480",
-                    "size": "1526270",
-                    "url": "https://media4.giphy.com/media/xFBnkMvpTM6m4/480w_s.jpg?cid=c2e99c3e4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&rid=480w_s.jpg"
-                }
-            },
-            "analytics_response_payload": "e=Z2lmX2lkPXhGQm5rTXZwVE02bTQmZXZlbnRfdHlwZT1HSUZfU0VBUkNIJmNpZD1jMmU5OWMzZTRhcXphdWhsN3oyazlwbno0dGlqN2VocmRjZWc2YXMzcjBiY3FqYTI",
-            "analytics":
-            {
-                "onload":
-                {
-                    "url": "https://giphy-analytics.giphy.com/simple_analytics?response_id=4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&event_type=GIF_SEARCH&gif_id=xFBnkMvpTM6m4&action_type=SEEN"
-                },
-                "onclick":
-                {
-                    "url": "https://giphy-analytics.giphy.com/simple_analytics?response_id=4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&event_type=GIF_SEARCH&gif_id=xFBnkMvpTM6m4&action_type=CLICK"
-                },
-                "onsent":
-                {
-                    "url": "https://giphy-analytics.giphy.com/simple_analytics?response_id=4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2&event_type=GIF_SEARCH&gif_id=xFBnkMvpTM6m4&action_type=SENT"
-                }
-            }
-        }
-    ],
-    "pagination":
-    {
-        "total_count": 568,
-        "count": 1,
-        "offset": 0
-    },
-    "meta":
-    {
-        "status": 200,
-        "msg": "OK",
-        "response_id": "4aqzauhl7z2k9pnz4tij7ehrdceg6as3r0bcqja2"
+// Makes a request for a gif from the Giphy API
+function getGif(character) {
+  // Settings for mock server requests
+  var preferHeader = "code=200, example=" + character;
+  var path = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5009495/gifs/search?";
+
+  var params = {
+    q: character,
+    limit: 1,
+    offset: 0,
+    rating: "g",
+    lang: "en",
+    api_key: "DDFZ1a8NNQfa6GQa23FoUELp6Ltmh0qI"
+  }
+
+  var url = path + $.param(params);
+
+  console.log(url);
+  
+  const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": url,
+    "method": "GET",
+    "headers": {
+      "Prefer": preferHeader
     }
- }
-var gifURL = giphy.data[0].embed_url;
-// variable to put in response
-function rendergif() {
-    $("iframe#heroGif").attr("src", gifURL);
-    console.log(gifURL);
-};
+  };
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    renderGif(response);
+  });
+}
+
+// Embeds the gif unto the provided iframe
+function renderGif(giphy) {
+  var gifURL = giphy.data[0].embed_url;
+  $("iframe#heroGif").attr("src", gifURL);
+  console.log(gifURL);
+}
 
 // Clears character data from the page
 function emptyContent() {
