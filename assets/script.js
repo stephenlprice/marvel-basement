@@ -1,5 +1,6 @@
 // Dropdown Button
 $('.dropdown-trigger').dropdown();
+$('.sidenav').sidenav();
 
 // Sample Marvel Object
 var marvel = {
