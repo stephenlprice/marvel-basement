@@ -106,7 +106,7 @@ function getGif(character) {
 
   var params = {
     q: character,
-    limit: 1,
+    limit: 25,
     offset: 0,
     rating: "g",
     lang: "en",
