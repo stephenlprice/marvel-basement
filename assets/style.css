@@ -1,11 +1,18 @@
-/* Google Font Banger {
+/* Google Fonts {
     font-family: 'Bangers', cursive;
 } */
+
+body {
+    font-family: 'Bangers', cursive;
+}
 
 #mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars {
     font-family: 'Bangers', cursive;
     background-color: red;
-    font:100;
+}
+
+#heroName {
+    margin-top: 0rem;
 }
 
 #heroGif {
@@ -17,8 +24,14 @@
 }
 
 html {
-    background: url(images/marvel-bg.jpg) no-repeat center center fixed;
+    background:
+        /* Does not add any color but shades the image a bit darker */
+        linear-gradient(
+          rgba(0, 0, 0, 0.65), 
+          rgba(0, 0, 0, 0.65)
+        ),
+        url(images/comic0.jpg) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    /* overflow: hidden; */
+    overflow: hidden;
   }
