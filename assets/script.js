@@ -3,7 +3,6 @@ var favs = JSON.parse(localStorage.getItem("favorites")) || [];
 // Flag to toggle requests between mock and prod servers for AJAX
 var mockFlag = true;
 
-
 // Initialize the page with preset data
 function init() {
   // Todo use the most recent character saved to local storage
