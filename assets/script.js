@@ -67,7 +67,7 @@ function searchCharacter(character) {
     }
     // If after previous for loop, character still not found, then request data from APIs
     if (charFound === false) {
-      console.log(character + " not found, requesting external data..");
+      console.log(character + " was not found, requesting external data...");
       getCharacter(character);
     }
   }
@@ -201,33 +201,45 @@ function emptyContent() {
 
 // Saves API response attributes to an array of objects in local storage
 function pushLocal(marvelObj, gifObj) {
-  var name = marvelObj.data.results[0].name;
-  var description = marvelObj.data.results[0].description;
-  var comics = marvelObj.data.results[0].comics.available;
-  var series = marvelObj.data.results[0].series.available;
-  var stories = marvelObj.data.results[0].stories.available;
-  var events = marvelObj.data.results[0].events.available;
-  var gif = gifObj.data[0].embed_url;
-
-  // Object to be pushed to favs and stored in local storage when a character is searched
-  var fav = {
-    name: name.toLowerCase(),
-    description: description,
-    comics: comics,
-    series: series,
-    stories: stories,
-    events: events,
-    gif: gif
+  var charHave = false;
+  for (var i = 0; i < favs.length; i++) {
+    if (marvelObj.data.results[0].name === favs[i].name) {
+      charHave = true;
+      console.log(favs[i].name + " was found in local storage! Duplicate will not be saved...");
+      break;
+    }
   }
+  // If after previous for loop, character still not found, then request data from APIs
+  if (charHave === false) {
+    console.log(marvelObj.data.results[0].name.toLowerCase() + " is a new favorite! Saved to local storage...");
+    var name = marvelObj.data.results[0].name;
+    var description = marvelObj.data.results[0].description;
+    var comics = marvelObj.data.results[0].comics.available;
+    var series = marvelObj.data.results[0].series.available;
+    var stories = marvelObj.data.results[0].stories.available;
+    var events = marvelObj.data.results[0].events.available;
+    var gif = gifObj.data[0].embed_url;
 
-  // Push to favs array and then store array in local storage
-  favs.push(fav);
-  // If favs exceeds limit, remove the oldest element
-  if (favs.length > 10) {
-    favs.shift();
+    // Object to be pushed to favs and stored in local storage when a character is searched
+    var fav = {
+      name: name.toLowerCase(),
+      description: description,
+      comics: comics,
+      series: series,
+      stories: stories,
+      events: events,
+      gif: gif
+    }
+
+    // Push to favs array and then store array in local storage
+    favs.push(fav);
+    // If favs exceeds limit, remove the oldest element
+    if (favs.length > 10) {
+      favs.shift();
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favs));
   }
-
-  localStorage.setItem("favorites", JSON.stringify(favs));
 }
 
 function localCharacter(character) {
