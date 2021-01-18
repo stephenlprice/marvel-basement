@@ -18,6 +18,7 @@ function init() {
 }
 // Dropdown Button that displays Favorite Characters
 $('.dropdown-trigger').dropdown();
+$('.sidenav').sidenav();
 
 // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
 $("form#searchForm").on("submit", function(event) {
@@ -81,6 +82,9 @@ function getCharacter(character) {
   // Settings for prod server requests
   var path = "https://gateway.marvel.com:443/v1/public/characters?";
 
+  // Settings for prod server requests (remove the "headers" section in settings)
+  // var path = "https://gateway.marvel.com:443/v1/public/characters?";
+
   var params = {
     name: character,
     apikey: "ba771d6381f28dcffac6f36592d1949b"
@@ -142,6 +146,9 @@ function getGif(character, marvelObj) {
 
   // Settings for prod server requests
   var path = "https://api.giphy.com/v1/gifs/search?";
+
+  // Settings for prod server requests (remove the "headers" section in settings)
+  // var path = "https://api.giphy.com/v1/gifs/search?";
 
   var params = {
     q: character,
