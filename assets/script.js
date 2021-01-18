@@ -47,6 +47,13 @@ $("ul#nav-mobile li a").on("click", function(event) {
   searchCharacter(character);
 });
 
+// Calls searchCharacter() with the provided 'data-character' attribute from sidebar on mobile
+$("ul#slide-out li a").on("click", function(event) {
+  event.preventDefault();
+  var character = $(this).attr("data-character");
+  searchCharacter(character);
+});
+
 // Uses value from search form and calls on getCharacter with built in caching
 function searchCharacter(character) {
   // If character input is undefined, null or empty, return message/
