@@ -51,7 +51,6 @@ function searchCharacter(character) {
     console.log("please provide a character name");
   }
   else {
-    console.log(character);
     getCharacter(character);
     getGif(character);
   }
@@ -75,7 +74,6 @@ function getCharacter(character) {
   if (mockFlag === true) {
     // settings for mock API
     var url = mockpath + $.param(params);
-    console.log(url);
 
     var settings = {
       "async": true,
@@ -90,7 +88,6 @@ function getCharacter(character) {
   else {
     // settings for production Marvel API
     var url = path + $.param(params);
-    console.log(url);
 
     var settings = {
       "async": true,
@@ -101,6 +98,7 @@ function getCharacter(character) {
   }
   
   $.ajax(settings).done(function (response) {
+    console.log(url);
     console.log(response);
     // Saves the character name to fav object
     fav.name = response.data.results[0].name;
@@ -141,7 +139,6 @@ function getGif(character) {
   // Toggles request settings based on mockFlag value
   if (mockFlag === true) {
     var url = mockpath + $.param(params);
-    console.log(url);
     // Settings for mock API 
     var settings = {
       "async": true,
@@ -156,7 +153,6 @@ function getGif(character) {
   // Settings for Giphy API
   else {
     var url = path + $.param(params);
-    console.log(url);
     
     var settings = {
       "async": true,
@@ -167,6 +163,7 @@ function getGif(character) {
   }
 
   $.ajax(settings).done(function (response) {
+    console.log(url);
     console.log(response);
     // Saves the character gif to local storage
     fav.gif = response.data[0].embed_url;
@@ -178,7 +175,6 @@ function getGif(character) {
 function renderGif(giphy) {
   var gifURL = giphy.data[0].embed_url;
   $("iframe#heroGif").attr("src", gifURL);
-  console.log(gifURL);
 }
 
 // Clears character data from the page
