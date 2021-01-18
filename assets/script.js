@@ -23,14 +23,14 @@ $('.dropdown-trigger').dropdown();
 // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
 $("form#searchForm").on("submit", function(event) {
   event.preventDefault();
-  var character = $("input#search").val().trim();
+  var character = $("input#search").val().trim().toLowerCase();
   searchCharacter(character);
 });
 
 // Calls searchCharacter() when a user clicks on the search icon
 $("label.label-icon").on("click", function(event) {
   event.preventDefault();
-  var character = $("input#search").val().trim();
+  var character = $("input#search").val().trim().toLowerCase();
   searchCharacter(character);
 });
 
@@ -206,8 +206,12 @@ function pushLocal(marvelObj, gifObj) {
 
   // Push to favs array and then store array in local storage
   favs.push(fav);
+  // If favs exceeds limit, remove the oldest element
+  if (favs.length > 10) {
+    favs.shift();
+  }
+
   localStorage.setItem("favorites", JSON.stringify(favs));
-  
 }
 
 function localCharacter(character) {
