@@ -5,7 +5,7 @@ var mockFlag = true;
 
 // Initialize the page with preset data
 function init() {
-  // Todo use the most recent character saved to local storage
+  // Checks for a character in local storage, if not found then get data from API
   if (favs.length === 0) {
     getCharacter(character);
   }
@@ -14,8 +14,8 @@ function init() {
     var initChar = favs[recentChar];
     localCharacter(initChar);
   }
-  
 }
+
 // Dropdown Button that displays Favorite Characters
 $('.dropdown-trigger').dropdown();
 $('.sidenav').sidenav();
@@ -82,9 +82,6 @@ function getCharacter(character) {
   // Settings for prod server requests
   var path = "https://gateway.marvel.com:443/v1/public/characters?";
 
-  // Settings for prod server requests (remove the "headers" section in settings)
-  // var path = "https://gateway.marvel.com:443/v1/public/characters?";
-
   var params = {
     name: character,
     apikey: "ba771d6381f28dcffac6f36592d1949b"
@@ -146,9 +143,6 @@ function getGif(character, marvelObj) {
 
   // Settings for prod server requests
   var path = "https://api.giphy.com/v1/gifs/search?";
-
-  // Settings for prod server requests (remove the "headers" section in settings)
-  // var path = "https://api.giphy.com/v1/gifs/search?";
 
   var params = {
     q: character,
@@ -243,11 +237,13 @@ function pushLocal(marvelObj, gifObj) {
     if (favs.length > 10) {
       favs.shift();
     }
-
+    // Write favs array to local storage
     localStorage.setItem("favorites", JSON.stringify(favs));
+
   }
 }
 
+// If character is found in local storage, write it to the page
 function localCharacter(character) {
   emptyContent();
   $("#heroName").text(character.name.charAt(0).toUpperCase() + character.name.slice(1));
