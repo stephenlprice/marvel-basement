@@ -47,13 +47,29 @@ $("ul#nav-mobile li a").on("click", function(event) {
   searchCharacter(character);
 });
 
-// Uses value from search form and calls on getCharacter
+// Uses value from search form and calls on getCharacter with built in caching
 function searchCharacter(character) {
+  // If character input is undefined, null or empty, return message/
   if (!character || character === null || character === undefined || character === "") {
     console.log("please provide a character name");
   }
+  // Set charFound flag to true if a matching name in favs array was found for character input
   else {
-    getCharacter(character);
+    var charFound = false;
+    for (var i = 0; i < favs.length; i++) {
+      if (favs[i].name === character) {
+        charFound = true;
+        console.log(character + " was found in local storage!");
+        // Render character from local storage to the page
+        localCharacter(favs[i]);
+        break;
+      }
+    }
+    // If after previous for loop, character still not found, then request data from APIs
+    if (charFound === false) {
+      console.log(character + " not found, requesting external data..");
+      getCharacter(character);
+    }
   }
 }
 
