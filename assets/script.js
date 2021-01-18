@@ -1,4 +1,11 @@
 var character = "hulk";
+var favs = JSON.parse(localStorage.getItem("favorites")) || [];
+// Object to be pushed to favs and stored in local storage when a character is searched
+var fav = {
+  name: "",
+  gif: ""
+}
+
 
 // Initialize the page with preset data
 function init() {
@@ -75,7 +82,9 @@ function getCharacter(character) {
   
   $.ajax(settingsMock).done(function (response) {
     console.log(response);
-    // TODO: We should save the response to local storage so that clicking on a favorite avoids API calls
+    // Saves the character name to fav object
+    fav.name = response.data.results[0].name;
+    
     renderCharacter(response);
   });
 }
@@ -123,6 +132,9 @@ function getGif(character) {
   
   $.ajax(settings).done(function (response) {
     console.log(response);
+    // Saves the character gif to local storage
+    fav.gif = response.data[0].embed_url;
+    
     renderGif(response);
   });
 }
@@ -137,6 +149,15 @@ function renderGif(giphy) {
 // Clears character data from the page
 function emptyContent() {
   $("#heroNumbers").empty();
+}
+
+// Saves variables to an array of objects in local storage
+function pushLocal() {
+
+  console.log(fav);
+  // Push the fav to the favs array and store the update in local storage
+  favs.push(fav);
+  localStorage.setItem("favorites", JSON.stringify(favs));
 }
 
 init();
