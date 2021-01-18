@@ -153,6 +153,12 @@ function emptyContent() {
 
 // Saves variables to an array of objects in local storage
 function pushLocal() {
+  if (fav.name === "" || fav.gif === "") {
+    console.log("cannot store an incomplete character object");
+  }
+  else {
+    
+  }
 
   console.log(fav);
   // Push the fav to the favs array and store the update in local storage
