@@ -11,10 +11,9 @@ function init() {
     getCharacter(character);
   }
   else {
-    var fav = JSON.parse(localStorage.getItem("favorites"));
-    var recentChar = fav.length - 1;
-    var initChar = fav[recentChar].name;
-    getCharacter(initChar);
+    var recentChar = favs.length - 1;
+    var initChar = favs[recentChar];
+    localCharacter(initChar);
   }
   
 }
@@ -209,6 +208,18 @@ function pushLocal(marvelObj, gifObj) {
   favs.push(fav);
   localStorage.setItem("favorites", JSON.stringify(favs));
   
+}
+
+function localCharacter(character) {
+  emptyContent();
+  $("#heroName").text(character.name.charAt(0).toUpperCase() + character.name.slice(1));
+  $("#descriptionText").text(character.description);
+  $("div.card-content h5").text("Appears In:");
+  $("#heroNumbers").append(/*html*/`<p>Comics: ${character.comics}</p>`);
+  $("#heroNumbers").append(/*html*/`<p>Series: ${character.series}</p>`);
+  $("#heroNumbers").append(/*html*/`<p>Stories: ${character.stories}</p>`);
+  $("#heroNumbers").append(/*html*/`<p>Events: ${character.events}</p>`);
+  $("iframe#heroGif").attr("src", character.gif);  
 }
 
 init();
