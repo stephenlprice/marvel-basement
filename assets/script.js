@@ -71,6 +71,7 @@ function getCharacter(character) {
     apikey: "ba771d6381f28dcffac6f36592d1949b"
   };
 
+  // Toggles request settings based on mockFlag value
   if (mockFlag === true) {
     // settings for mock API
     var url = mockpath + $.param(params);
@@ -123,36 +124,52 @@ function renderCharacter(marvel) {
 function getGif(character) {
   // Settings for mock server requests
   var preferHeader = "code=200, example=" + character;
-  var path = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5009495/gifs/search?";
+  var mockpath = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5009495/gifs/search?";
+
+  // Settings for prod server requests
+  var path = "https://api.giphy.com/v1/gifs/search?";
 
   var params = {
     q: character,
-    limit: 1,
+    limit: 25,
     offset: 0,
     rating: "g",
     lang: "en",
     api_key: "DDFZ1a8NNQfa6GQa23FoUELp6Ltmh0qI"
   };
 
-  var url = path + $.param(params);
+  // Toggles request settings based on mockFlag value
+  if (mockFlag === true) {
+    var url = mockpath + $.param(params);
+    console.log(url);
+    // Settings for mock API 
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": url,
+      "method": "GET",
+      "headers": {
+        "Prefer": preferHeader
+      }
+    };
+  }
+  // Settings for Giphy API
+  else {
+    var url = path + $.param(params);
+    console.log(url);
+    
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": url,
+      "method": "GET"
+    };
+  }
 
-  console.log(url);
-  
-  const settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": url,
-    "method": "GET",
-    "headers": {
-      "Prefer": preferHeader
-    }
-  };
-  
   $.ajax(settings).done(function (response) {
     console.log(response);
     // Saves the character gif to local storage
     fav.gif = response.data[0].embed_url;
-    
     renderGif(response);
   });
 }
