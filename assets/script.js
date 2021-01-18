@@ -2,18 +2,21 @@ var character = "hulk";
 var favs = JSON.parse(localStorage.getItem("favorites")) || [];
 // Flag to toggle requests between mock and prod servers for AJAX
 var mockFlag = true;
-// Object to be pushed to favs and stored in local storage when a character is searched
-var fav = {
-  name: "",
-  gif: ""
-}
 
 
 // Initialize the page with preset data
 function init() {
   // Todo use the most recent character saved to local storage
-  getCharacter(character);
-  getGif(character);
+  if (favs.length === 0) {
+    getCharacter(character);
+  }
+  else {
+    var fav = JSON.parse(localStorage.getItem("favorites"));
+    var recentChar = fav.length - 1;
+    var initChar = fav[recentChar].name;
+    getCharacter(initChar);
+  }
+  
 }
 // Dropdown Button that displays Favorite Characters
 $('.dropdown-trigger').dropdown();
@@ -52,7 +55,6 @@ function searchCharacter(character) {
   }
   else {
     getCharacter(character);
-    getGif(character);
   }
 }
 
@@ -100,16 +102,16 @@ function getCharacter(character) {
   $.ajax(settings).done(function (response) {
     console.log(url);
     console.log(response);
-    // Saves the character name to fav object
-    fav.name = response.data.results[0].name;
     renderCharacter(response);
+    var marvelObj = response;
+    getGif(character, marvelObj);
   });
 }
 
 // Writes character data from the Marvel API to the page
 function renderCharacter(marvel) {
   emptyContent();
-  $("#heroName").text(marvel.data.results[0].name)
+  $("#heroName").text(marvel.data.results[0].name);
   $("#descriptionText").text(marvel.data.results[0].description);
   $("div.card-content h5").text("Appears In:");
   $("#heroNumbers").append(/*html*/`<p>Comics: ${marvel.data.results[0].comics.available}</p>`);
@@ -119,7 +121,7 @@ function renderCharacter(marvel) {
 }
 
 // Makes a request for a gif from the Giphy API
-function getGif(character) {
+function getGif(character, marvelObj) {
   // Settings for mock server requests
   var preferHeader = "code=200, example=" + character;
   var mockpath = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5009495/gifs/search?";
@@ -165,9 +167,9 @@ function getGif(character) {
   $.ajax(settings).done(function (response) {
     console.log(url);
     console.log(response);
-    // Saves the character gif to local storage
-    fav.gif = response.data[0].embed_url;
     renderGif(response);
+    var gifObj = response;
+    pushLocal(marvelObj, gifObj);
   });
 }
 
@@ -182,19 +184,31 @@ function emptyContent() {
   $("#heroNumbers").empty();
 }
 
-// Saves variables to an array of objects in local storage
-function pushLocal() {
-  if (fav.name === "" || fav.gif === "") {
-    console.log("cannot store an incomplete character object");
-  }
-  else {
-    
+// Saves API response attributes to an array of objects in local storage
+function pushLocal(marvelObj, gifObj) {
+  var name = marvelObj.data.results[0].name;
+  var description = marvelObj.data.results[0].description;
+  var comics = marvelObj.data.results[0].comics.available;
+  var series = marvelObj.data.results[0].series.available;
+  var stories = marvelObj.data.results[0].stories.available;
+  var events = marvelObj.data.results[0].events.available;
+  var gif = gifObj.data[0].embed_url;
+
+  // Object to be pushed to favs and stored in local storage when a character is searched
+  var fav = {
+    name: name.toLowerCase(),
+    description: description,
+    comics: comics,
+    series: series,
+    stories: stories,
+    events: events,
+    gif: gif
   }
 
-  console.log(fav);
-  // Push the fav to the favs array and store the update in local storage
+  // Push to favs array and then store array in local storage
   favs.push(fav);
   localStorage.setItem("favorites", JSON.stringify(favs));
+  
 }
 
 init();
