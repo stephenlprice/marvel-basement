@@ -1,5 +1,7 @@
 var character = "hulk";
 var favs = JSON.parse(localStorage.getItem("favorites")) || [];
+// Flag to toggle requests between mock and prod servers for AJAX
+var mockFlag = true;
 // Object to be pushed to favs and stored in local storage when a character is searched
 var fav = {
   name: "",
@@ -59,32 +61,48 @@ function searchCharacter(character) {
 function getCharacter(character) {
   // Settings for mock server requests
   var preferHeader = "code=200, example=" + character;
-  var path = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5007456/v1/public/characters?";
+  var mockpath = "https://stelloprint.stoplight.io/mocks/stelloprint/marvel-basement-apis/5007456/v1/public/characters?";
+  
+  // Settings for prod server requests
+  var path = "https://gateway.marvel.com:443/v1/public/characters?";
 
   var params = {
     name: character,
     apikey: "ba771d6381f28dcffac6f36592d1949b"
-  }
-
-  var url = path + $.param(params);
-
-  console.log(url);
-
-  const settingsMock = {
-    "async": true,
-    "crossDomain": true,
-    "url": url,
-    "method": "GET",
-    "headers": {
-      "Prefer": preferHeader
-    }
   };
+
+  if (mockFlag === true) {
+    // settings for mock API
+    var url = mockpath + $.param(params);
+    console.log(url);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": url,
+      "method": "GET",
+      "headers": {
+        "Prefer": preferHeader
+      }
+    };
+  }
+  else {
+    // settings for production Marvel API
+    var url = path + $.param(params);
+    console.log(url);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": url,
+      "method": "GET"
+    };
+  }
   
-  $.ajax(settingsMock).done(function (response) {
+  $.ajax(settings).done(function (response) {
     console.log(response);
     // Saves the character name to fav object
     fav.name = response.data.results[0].name;
-    
     renderCharacter(response);
   });
 }
@@ -114,7 +132,7 @@ function getGif(character) {
     rating: "g",
     lang: "en",
     api_key: "DDFZ1a8NNQfa6GQa23FoUELp6Ltmh0qI"
-  }
+  };
 
   var url = path + $.param(params);
 
