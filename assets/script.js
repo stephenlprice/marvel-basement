@@ -8,6 +8,7 @@ function init() {
 }
 // Dropdown Button that displays Favorite Characters
 $('.dropdown-trigger').dropdown();
+$('.sidenav').sidenav();
 
 // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
 $("form#searchForm").on("submit", function(event) {

@@ -6,9 +6,10 @@ body {
     font-family: 'Bangers', cursive;
 }
 
-#mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars {
+#mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars, #slide-out {
     font-family: 'Bangers', cursive;
     background-color: red;
+    font: 100;
 }
 
 #heroName {
@@ -17,7 +18,7 @@ body {
 
 #heroGif {
     margin-top: 1%;
-    
+    border: none;
 }
 
 #popCharsTitle {
@@ -31,3 +32,19 @@ html {
     height: 100%;
     overflow: hidden;
   }
+
+@media only screen and (max-width: 992px) {
+    #popCharsTitle {
+        left: 22%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #makeGone {
+        display: none;
+    }
+
+    #makeThicc {
+        white-space: nowrap;
+    }
+}
