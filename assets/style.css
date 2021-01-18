@@ -6,6 +6,19 @@ body {
     font-family: 'Bangers', cursive;
 }
 
+
+.weird {
+    box-shadow: inset 1px 1px 20px #000
+}
+
+#bridge {
+    padding: 0;
+}
+
+#gap {
+    padding: 0;
+}
+
 #mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars, #slide-out {
     font-family: 'Bangers', cursive;
     background-color: red;
@@ -32,6 +45,8 @@ html {
     height: 100%;
     overflow: hidden;
   }
+
+
 
 @media only screen and (max-width: 992px) {
     #popCharsTitle {
