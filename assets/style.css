@@ -1,11 +1,36 @@
 /* Google Fonts {
     font-family: 'Bangers', cursive;
+    font-family: 'Gudea', sans-serif; 400, 400 italic and 700
 } */
 
 body {
     font-family: 'Bangers', cursive;
 }
 
+.row .col {
+    padding: 0 0.4rem;
+}
+
+div#mainHeader a.brand-logo.center{
+    font-size: 60px;
+}
+
+/* Gif iframe */
+iframe#heroGif {
+    overflow: hidden;
+}
+
+/* Contains gif iframe */
+div.card-image.center {
+    margin-top: 1%;
+    background-color: RGBA(42,49,50,0.75);
+    height: auto;
+    width: 100%;
+}
+
+#popularCharacters {
+    padding: 0;
+}
 
 .weird {
     box-shadow: inset 1px 1px 20px #000
@@ -22,20 +47,108 @@ body {
 #mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars, #slide-out {
     font-family: 'Bangers', cursive;
     background-color: red;
-    font: 100;
+    font-weight: 100;
+}
+
+#descriptionCard {
+    font-size: 20px;
+}
+
+#metaData div.card-content.white-text div.row {
+    margin-bottom: 0;
+}
+
+#metaData div.card-content {
+    padding: 2rem;
+}
+
+ul#dropdown1 li.favorite-char a.favorite-text {
+    font-size: 20px;
+    color: #49fcd4;
+}
+
+#searchBar nav ul a {
+    font-size: 30px;
+}
+
+/* Search Placeholder */
+input#search {
+    font-size: 30px;
+}
+
+/* Character thumbnail */
+img#thumbnail {
+    width: 100%;
+    border: black;
+    border-style: solid;
+    border-width: thin;
+    margin-bottom: 1rem;
+}
+
+#metaData h5 {
+    margin-top: 0;
+}
+
+/* Slide out styles */
+#slide-out li h4 {
+    padding: 32px 0 0 0;
+}
+
+#slide-out li a {
+    font-size: 1.8rem;
+    padding: 0 16px 0 16px;
+    display: inline;
+}
+
+#slide-out li img {
+    width: 40px;
+    border: black;
+    border-style: solid;
+    border-width: thin;
+}
+
+#slide-out li {
+    padding: 8px 0 8px 32px;
+}
+
+div#popChars ul#nav-mobile li a {
+    font-size: 1.5rem;
+}
+
+/* Added typographic heirarchy to longer text */
+#descriptionText {
+    font-family: 'Gudea', sans-serif;
+    font-weight: 400;
+}
+
+#heroNumbers {
+    font-family: 'Gudea', sans-serif;
+    font-weight: 400;
 }
 
 #heroName {
     margin-top: 0rem;
 }
 
-#heroGif {
-    margin-top: 1%;
-    border: none;
+#popCharsTitle {
+    margin-left: 1.25rem;
 }
 
-#popCharsTitle {
-    margin-left: 1%;
+/* Nav had a lighter color and could appear when prototyping */
+nav {
+    background-color: #FF0000;
+}
+
+/* Override defaults so that the dropdown is a bit wider */
+#dropdown1 {
+    min-width: 150px;
+    background-color: #2A3132;
+}
+
+/* Override defaults for favorites dropdown so that it can include thumbnails */
+.dropdown-content li>a {
+    padding: 0px 0px; 
+    margin: auto;
 }
 
 html {
@@ -43,14 +156,36 @@ html {
         url(images/back2.png) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
-  }
+    overflow-y: auto;
+}
 
-
+@media only screen and (min-width: 992px) {
+    #metaData {
+        font-size: 20px;
+    }
+}
 
 @media only screen and (max-width: 992px) {
     #popCharsTitle {
         left: 22%;
+    }
+
+    #metaData {
+        font-size: 20px;
+    }
+
+    #descriptionCard {
+        font-size: 20px;
+    }
+
+    #makeGone {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #makeGone {
+        display: none;
     }
 }
 
@@ -61,5 +196,27 @@ html {
 
     #makeThicc {
         white-space: nowrap;
+    }
+
+    #metaData {
+        font-size: 17px;
+    }
+
+    #descriptionCard {
+        font-size: 17px;
+    }
+
+    #searchBar nav ul a {
+        font-size: 20px;
+    }
+    
+    /* Search Placeholder */
+    input#search {
+        font-size: 20px;
+    }
+
+    /* Title of the app */
+    div#mainHeader a.brand-logo.center{
+        font-size: 40px;
     }
 }

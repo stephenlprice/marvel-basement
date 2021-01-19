@@ -1,7 +1,7 @@
 var character = "hulk";
 var favs = JSON.parse(localStorage.getItem("favorites")) || [];
 // Flag to toggle requests between mock and prod servers for AJAX
-var mockFlag = true;
+var mockFlag = false;
 
 // Initialize the page with preset data
 function init() {
@@ -10,48 +10,63 @@ function init() {
     getCharacter(character);
   }
   else {
+    // On first page display the hulk
     var recentChar = favs.length - 1;
     var initChar = favs[recentChar];
     localCharacter(initChar);
+    renderFavorites();
   }
 }
 
-// Dropdown Button that displays Favorite Characters
-$('.dropdown-trigger').dropdown();
-$('.sidenav').sidenav();
+// Initialize event listeners after the document loads
+$(document).ready(function(){
+  // Initialize materialize event listeners
+  $('.materialboxed').materialbox();
+  $('.dropdown-trigger').dropdown();
+  $('.sidenav').sidenav();
 
-// Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
-$("form#searchForm").on("submit", function(event) {
-  event.preventDefault();
-  var character = $("input#search").val().trim().toLowerCase();
-  searchCharacter(character);
-});
+  // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
+  $("form#searchForm").on("submit", function(event) {
+    event.preventDefault();
+    var character = $("input#search").val().trim().toLowerCase();
+    searchCharacter(character);
+    $("input#search").val("");
+  });
 
-// Calls searchCharacter() when a user clicks on the search icon
-$("label.label-icon").on("click", function(event) {
-  event.preventDefault();
-  var character = $("input#search").val().trim().toLowerCase();
-  searchCharacter(character);
-});
+  // Calls searchCharacter() when a user clicks on the search icon
+  $("label.label-icon").on("click", function(event) {
+    event.preventDefault();
+    var character = $("input#search").val().trim().toLowerCase();
+    searchCharacter(character);
+    $("input#search").val("");
+  });
 
-// Clear the search bar of text
-$("i#clearSearch").on("click", function(event) {
-  event.preventDefault();
-  $("input#search").val("");
-});
+  // Clear the search bar of text
+  $("i#clearSearch").on("click", function(event) {
+    event.preventDefault();
+    $("input#search").val("");
+  });
 
-// Calls searchCharacter() with the provided 'data-character' attribute from Popular Characters
-$("ul#nav-mobile li a").on("click", function(event) {
-  event.preventDefault();
-  var character = $(this).attr("data-character");
-  searchCharacter(character);
-});
+  // Calls searchCharacter() with the provided 'data-character' attribute from Popular Characters
+  $("ul#nav-mobile li a").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).attr("data-character");
+    searchCharacter(character);
+  });
 
-// Calls searchCharacter() with the provided 'data-character' attribute from sidebar on mobile
-$("ul#slide-out li a").on("click", function(event) {
-  event.preventDefault();
-  var character = $(this).attr("data-character");
-  searchCharacter(character);
+  // Calls searchCharacter() with data provided by Popular Characters from sidebar on mobile
+  $("ul#slide-out li a").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).attr("data-character");
+    searchCharacter(character);
+  });
+
+  // Calls searchCharacter() with data provided by Favorite Characters from dropdown
+  $("ul#dropdown1 li").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).children("a").attr("data-character");
+    searchCharacter(character);
+  });
 });
 
 // Uses value from search form and calls on getCharacter with built in caching
@@ -136,6 +151,8 @@ function renderCharacter(marvel) {
   $("#heroName").text(marvel.data.results[0].name);
   $("#descriptionText").text(marvel.data.results[0].description);
   $("div.card-content h5").text("Appears In:");
+  $("img#thumbnail").attr("src", marvel.data.results[0].thumbnail.path + "." + 
+    marvel.data.results[0].thumbnail.extension);
   $("#heroNumbers").append(/*html*/`<p>Comics: ${marvel.data.results[0].comics.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Series: ${marvel.data.results[0].series.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Stories: ${marvel.data.results[0].stories.available}</p>`);
@@ -225,6 +242,7 @@ function pushLocal(marvelObj, gifObj) {
     var series = marvelObj.data.results[0].series.available;
     var stories = marvelObj.data.results[0].stories.available;
     var events = marvelObj.data.results[0].events.available;
+    var thumbnail = marvelObj.data.results[0].thumbnail.path + "." + marvelObj.data.results[0].thumbnail.extension;
     var gif = gifObj.data[0].embed_url;
 
     // Object to be pushed to favs and stored in local storage when a character is searched
@@ -235,6 +253,7 @@ function pushLocal(marvelObj, gifObj) {
       series: series,
       stories: stories,
       events: events,
+      thumbnail: thumbnail,
       gif: gif
     }
 
@@ -246,6 +265,7 @@ function pushLocal(marvelObj, gifObj) {
     }
     // Write favs array to local storage
     localStorage.setItem("favorites", JSON.stringify(favs));
+    renderFavorites();
 
   }
 }
@@ -256,11 +276,36 @@ function localCharacter(character) {
   $("#heroName").text(character.name.charAt(0).toUpperCase() + character.name.slice(1));
   $("#descriptionText").text(character.description);
   $("div.card-content h5").text("Appears In:");
+  $("img#thumbnail").attr("src", character.thumbnail);
   $("#heroNumbers").append(/*html*/`<p>Comics: ${character.comics}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Series: ${character.series}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Stories: ${character.stories}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Events: ${character.events}</p>`);
   $("iframe#heroGif").attr("src", character.gif);  
+}
+
+// Add characters from local storage to the favorites list
+function renderFavorites() {
+   // Clear the existing favorites list to replace with new data
+   $("ul#dropdown1").empty();
+  
+  var favorites = JSON.parse(localStorage.getItem("favorites"));
+
+  // If local storage is empty, log feedback
+  if (favorites.length <= 0) {
+    console.log("No favorites found! Search a character to add to your favorites list...");
+  }
+  // For every element in the array, write a list item for that character
+  else {
+    favorites.forEach(function(character) {
+      $("ul#dropdown1").prepend(/*html*/`
+        <li class="favorite-char valign-wrapper">
+          <img width="56px" src="${character.thumbnail}" style="display: inline;">
+          <a class="favorite-text center-align flow-text" data-character="${character.name}" style="display: inline;">${character.name}</a>
+        </li>
+      `);
+    });
+  }
 }
 
 init();
