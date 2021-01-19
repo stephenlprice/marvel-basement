@@ -38,6 +38,19 @@ body {
     margin-left: 1%;
 }
 
+/* Override defaults so that the dropdown is a bit wider */
+#dropdown1 {
+    min-width: 150px;
+    background-color: #2A3132;
+}
+
+/* Override defaults for favorites dropdown so that it can include thumbnails */
+.dropdown-content li>a {
+    padding: 0px 0px; 
+    margin: auto;
+    color: #49fcd4;
+}
+
 html {
     background:
         url(images/back2.png) no-repeat center center fixed;
@@ -45,8 +58,6 @@ html {
     height: 100%;
     overflow: hidden;
   }
-
-
 
 @media only screen and (max-width: 992px) {
     #popCharsTitle {

@@ -286,9 +286,9 @@ function renderFavorites() {
   else {
     favorites.forEach(function(character) {
       $("ul#dropdown1").prepend(/*html*/`
-        <li class="valign-wrapper">
+        <li class="favorite-char valign-wrapper">
           <img width="56px" src="${character.thumbnail}" style="display: inline;">
-          <a data-character="${character.name}" style="display: inline;">${character.name}</a>
+          <a class="favorite-text center-align" data-character="${character.name}" style="display: inline;">${character.name}</a>
         </li>
       `);
     });
