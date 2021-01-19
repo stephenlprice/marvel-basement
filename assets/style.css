@@ -1,31 +1,226 @@
-/* Google Font Banger {
+/* Google Fonts {
     font-family: 'Bangers', cursive;
+    font-family: 'Gudea', sans-serif; 400, 400 italic and 700
 } */
 
-#mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars {
+body {
     font-family: 'Bangers', cursive;
-    background-color: red;
-    font:100;
 }
 
-/* #wholeCard {
-    background: blanchedalmond;
-    background-size: cover;
-    height: 100%;
-    /* overflow: hidden; */  
-} */
-
-#heroGif {
+/* Contains gif iframe */
+div.card-image.center {
     margin-top: 1%;
+    background-color: RGBA(42,49,50,0.75);
+    height: auto;
+    width: 100%;
 }
-
-#popCharsTitle {
-    margin-left: 1%;
+/* text sizing */
+div#mainHeader a.brand-logo.center{
+    font-size: 60px;
+}
+/* minor layout adjustment */
+div#popChars ul#nav-mobile li a {
+    font-size: 1.5rem;
 }
 
 html {
-    background: url(images/marvel-bg.jpg) no-repeat center center fixed;
+    background:
+        url(images/back2.png) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    /* overflow: hidden; */
-  }
+    overflow-y: auto;
+}
+
+/* Gif iframe */
+iframe#heroGif {
+    overflow: hidden;
+}
+
+/* Character thumbnail */
+img#thumbnail {
+    width: 100%;
+    border: black;
+    border-style: solid;
+    border-width: thin;
+    margin-bottom: 1rem;
+}
+
+/* Search Placeholder */
+input#search {
+    font-size: 30px;
+}
+
+/* Nav had a lighter color and could appear when prototyping */
+nav {
+    background-color: #FF0000;
+}
+/* text for the dropdown */
+ul#dropdown1 li.favorite-char a.favorite-text {
+    font-size: 20px;
+    color: #49fcd4;
+}
+
+/* Override defaults for favorites dropdown so that it can include thumbnails */
+.dropdown-content li>a {
+    padding: 0px 0px; 
+    margin: auto;
+}
+/* minor layout to get favorites on screen */
+.squeeze {
+    margin-bottom: 0px;
+}
+/* minor layout adjustment */
+.row .col {
+    padding: 0 0.4rem;
+}
+
+/* minor layout adjustment */
+#bridge {
+    padding: 0;
+}
+
+/* font sizing */
+#descriptionCard {
+    font-size: 20px;
+}
+
+/* Added typographic heirarchy to longer text */
+#descriptionText {
+    font-family: 'Gudea', sans-serif;
+    font-weight: 400;
+}
+
+/* Override defaults so that the dropdown is a bit wider */
+#dropdown1 {
+    min-width: 150px;
+    background-color: #2A3132;
+}
+/* minor layout adjustment */
+#gap {
+    padding: 0;
+}
+/* minor layout adjustment */
+#heroName {
+    margin-top: 0rem;
+}
+/* font for smaller type */
+#heroNumbers {
+    font-family: 'Gudea', sans-serif;
+    font-weight: 400;
+}
+
+/* font for bigger type */
+#mainHeader, #search, #favHeroes, #metaData, #heroStats, #descriptionCard, #popChars, #slide-out {
+    font-family: 'Bangers', cursive;
+    background-color: red;
+    font-weight: 100;
+}
+/* minor layout adjustment */
+#metaData div.card-content.white-text div.row {
+    margin-bottom: 0;
+}
+/* minor layout adjustment */
+#metaData div.card-content {
+    padding: 2rem;
+}
+/* minor layout adjustment */
+#metaData h5 {
+    margin-top: 0;
+}
+/* minor layout adjustment */
+#popularCharacters {
+    padding: 0;
+}
+/* font sizing */
+#searchBar nav ul a {
+    font-size: 30px;
+}
+
+/* Slide out styles */
+#slide-out li h4 {
+    padding: 32px 0 0 0;
+}
+/* css for slide out when in mobile size */
+#slide-out li a {
+    font-size: 1.8rem;
+    padding: 0 16px 0 16px;
+    display: inline;
+}
+/* css for slide out when in mobile size */
+#slide-out li img {
+    width: 40px;
+    border: black;
+    border-style: solid;
+    border-width: thin;
+}
+/* css for slide out when in mobile size */
+#slide-out li {
+    padding: 8px 0 8px 32px;
+}
+
+#popCharsTitle {
+    margin-left: 1.25rem;
+}
+
+/* media queries for responsiveness */
+@media only screen and (min-width: 992px) {
+    #metaData {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #popCharsTitle {
+        left: 22%;
+    }
+
+    #metaData {
+        font-size: 20px;
+    }
+
+    #descriptionCard {
+        font-size: 20px;
+    }
+
+    #makeGone {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #makeGone {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #makeGone {
+        display: none;
+    }
+
+    #makeThicc {
+        white-space: nowrap;
+    }
+
+    #metaData {
+        font-size: 17px;
+    }
+
+    #descriptionCard {
+        font-size: 17px;
+    }
+
+    #searchBar nav ul a {
+        font-size: 20px;
+    }
+    
+    /* Search Placeholder */
+    input#search {
+        font-size: 20px;
+    }
+
+    /* Title of the app */
+    div#mainHeader a.brand-logo.center{
+        font-size: 40px;
+    }
+}
