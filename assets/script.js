@@ -19,17 +19,22 @@ function init() {
 
 // Dropdown Button that displays Favorite Characters
 $(document).ready(function(){
+  // Initialize materialize event listeners
   $('.materialboxed').materialbox();
+  $('.dropdown-trigger').dropdown();
+  $('.sidenav').sidenav();
+
+
 });
 
-$('.dropdown-trigger').dropdown();
-$('.sidenav').sidenav();
+
 
 // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
 $("form#searchForm").on("submit", function(event) {
   event.preventDefault();
   var character = $("input#search").val().trim().toLowerCase();
   searchCharacter(character);
+  $("input#search").val("");
 });
 
 // Calls searchCharacter() when a user clicks on the search icon
@@ -37,6 +42,7 @@ $("label.label-icon").on("click", function(event) {
   event.preventDefault();
   var character = $("input#search").val().trim().toLowerCase();
   searchCharacter(character);
+  $("input#search").val("");
 });
 
 // Clear the search bar of text
@@ -52,7 +58,7 @@ $("ul#nav-mobile li a").on("click", function(event) {
   searchCharacter(character);
 });
 
-// Calls searchCharacter() with the provided 'data-character' attribute from sidebar on mobile
+// Calls searchCharacter() with data provided by Popular Characters from sidebar on mobile
 $("ul#slide-out li a").on("click", function(event) {
   event.preventDefault();
   var character = $(this).attr("data-character");
