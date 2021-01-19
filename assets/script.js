@@ -60,6 +60,13 @@ $(document).ready(function(){
     var character = $(this).attr("data-character");
     searchCharacter(character);
   });
+
+  // Calls searchCharacter() with data provided by Favorite Characters from dropdown
+  $("ul#dropdown1 li").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).children("a").attr("data-character");
+    searchCharacter(character);
+  });
 });
 
 // Uses value from search form and calls on getCharacter with built in caching

@@ -7,6 +7,13 @@ body {
     font-family: 'Bangers', cursive;
 }
 
+.row .col {
+    padding: 0 0.4rem;
+}
+
+#popularCharacters {
+    padding: 0;
+}
 
 .weird {
     box-shadow: inset 1px 1px 20px #000
