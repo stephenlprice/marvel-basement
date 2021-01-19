@@ -18,6 +18,10 @@ function init() {
 }
 
 // Dropdown Button that displays Favorite Characters
+$(document).ready(function(){
+  $('.materialboxed').materialbox();
+});
+
 $('.dropdown-trigger').dropdown();
 $('.sidenav').sidenav();
 
@@ -226,6 +230,7 @@ function pushLocal(marvelObj, gifObj) {
     var series = marvelObj.data.results[0].series.available;
     var stories = marvelObj.data.results[0].stories.available;
     var events = marvelObj.data.results[0].events.available;
+    var thumbnail = marvelObj.data.results[0].thumbnail.path + "." + marvelObj.data.results[0].thumbnail.extension;
     var gif = gifObj.data[0].embed_url;
 
     // Object to be pushed to favs and stored in local storage when a character is searched
@@ -236,6 +241,7 @@ function pushLocal(marvelObj, gifObj) {
       series: series,
       stories: stories,
       events: events,
+      thumbnail: thumbnail,
       gif: gif
     }
 
@@ -279,8 +285,11 @@ function renderFavorites() {
   // For every element in the array, write a list item for that character
   else {
     favorites.forEach(function(character) {
-      $("ul#dropdown1").append(/*html*/`
-        <li><a data-character="${character.name}">${character.name}</a></li>
+      $("ul#dropdown1").prepend(/*html*/`
+        <li class="valign-wrapper">
+          <img width="56px" src="${character.thumbnail}" style="display: inline;">
+          <a data-character="${character.name}" style="display: inline;">${character.name}</a>
+        </li>
       `);
     });
   }
