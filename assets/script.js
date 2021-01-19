@@ -151,7 +151,8 @@ function renderCharacter(marvel) {
   $("#heroName").text(marvel.data.results[0].name);
   $("#descriptionText").text(marvel.data.results[0].description);
   $("div.card-content h5").text("Appears In:");
-  $("img#thumbnail").attr("src", marvel.data.results[0].thumbnail.path + "." + marvel.data.results[0].thumbnail.extension)
+  $("img#thumbnail").attr("src", marvel.data.results[0].thumbnail.path + "." + 
+    marvel.data.results[0].thumbnail.extension);
   $("#heroNumbers").append(/*html*/`<p>Comics: ${marvel.data.results[0].comics.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Series: ${marvel.data.results[0].series.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Stories: ${marvel.data.results[0].stories.available}</p>`);
@@ -275,6 +276,7 @@ function localCharacter(character) {
   $("#heroName").text(character.name.charAt(0).toUpperCase() + character.name.slice(1));
   $("#descriptionText").text(character.description);
   $("div.card-content h5").text("Appears In:");
+  $("img#thumbnail").attr("src", character.thumbnail);
   $("#heroNumbers").append(/*html*/`<p>Comics: ${character.comics}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Series: ${character.series}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Stories: ${character.stories}</p>`);

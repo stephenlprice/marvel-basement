@@ -11,6 +11,10 @@ body {
     padding: 0 0.4rem;
 }
 
+div#mainHeader a.brand-logo.center{
+    font-size: 60px;
+}
+
 #popularCharacters {
     padding: 0;
 }
@@ -33,10 +37,43 @@ body {
     font-weight: 100;
 }
 
+#descriptionCard {
+    font-size: 20px;
+}
+
+#metaData div.card-content.white-text div.row {
+    margin-bottom: 0;
+}
+
+#metaData div.card-content {
+    padding: 2rem;
+}
+
+ul#dropdown1 li.favorite-char a.favorite-text {
+    font-size: 20px;
+    color: #49fcd4;
+}
+
+#searchBar nav ul a {
+    font-size: 30px;
+}
+
+/* Search Placeholder */
+input#search {
+    font-size: 30px;
+}
+
 /* Character thumbnail */
 img#thumbnail {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    border: black;
+    border-style: solid;
+    border-width: thin;
+    margin-bottom: 1rem;
+}
+
+#metaData h5 {
+    margin-top: 0;
 }
 
 /* Slide out styles */
@@ -61,8 +98,8 @@ img#thumbnail {
     padding: 8px 0 8px 32px;
 }
 
-#popChars li a {
-    font-size: 1.25rem;
+div#popChars ul#nav-mobile li a {
+    font-size: 1.5rem;
 }
 
 /* Added typographic heirarchy to longer text */
@@ -86,17 +123,12 @@ img#thumbnail {
 }
 
 #popCharsTitle {
-    margin-left: 1%;
+    margin-left: 1.25rem;
 }
 
 /* Nav had a lighter color and could appear when prototyping */
 nav {
     background-color: #FF0000;
-}
-
-/* Search Bar */
-input#search {
-    font-size: 1.25rem;
 }
 
 /* Override defaults so that the dropdown is a bit wider */
@@ -105,16 +137,10 @@ input#search {
     background-color: #2A3132;
 }
 
-/* Favorites title */
-.dropdown-trigger {
-    font-size: 1.25rem;
-}
-
 /* Override defaults for favorites dropdown so that it can include thumbnails */
 .dropdown-content li>a {
     padding: 0px 0px; 
     margin: auto;
-    color: #49fcd4;
 }
 
 html {
@@ -122,12 +148,36 @@ html {
         url(images/back2.png) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
-  }
+    overflow-y: auto;
+}
+
+@media only screen and (min-width: 992px) {
+    #metaData {
+        font-size: 20px;
+    }
+}
 
 @media only screen and (max-width: 992px) {
     #popCharsTitle {
         left: 22%;
+    }
+
+    #metaData {
+        font-size: 20px;
+    }
+
+    #descriptionCard {
+        font-size: 20px;
+    }
+
+    #makeGone {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #makeGone {
+        display: none;
     }
 }
 
@@ -138,5 +188,27 @@ html {
 
     #makeThicc {
         white-space: nowrap;
+    }
+
+    #metaData {
+        font-size: 17px;
+    }
+
+    #descriptionCard {
+        font-size: 17px;
+    }
+
+    #searchBar nav ul a {
+        font-size: 20px;
+    }
+    
+    /* Search Placeholder */
+    input#search {
+        font-size: 20px;
+    }
+
+    /* Title of the app */
+    div#mainHeader a.brand-logo.center{
+        font-size: 40px;
     }
 }

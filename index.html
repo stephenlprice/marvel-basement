@@ -30,7 +30,7 @@
 
     </div>
     <!-- Search Bar -->
-    <div class="container">
+    <div class="container" id="searchBar">
         <div class="row">
             <div class="col s6 m6 l6 z-depth-5" id="bridge">
                 <nav>
@@ -56,8 +56,8 @@
                     <div class="nav-wrapper" id="favHeroes">
                         <ul class="right">
                             <!-- Dropdown Trigger -->
-                            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">favorites<i
-                                        class="material-icons right">menu</i></a></li>
+                            <li><a id="favDrop" class="dropdown-trigger" href="#!" data-target="dropdown1">favorites
+                                <i class="material-icons right">menu</i></a></li>
                         </ul>
                     </div>
                 </nav>
@@ -68,16 +68,16 @@
         <div class="row">
             <div class="col s12 m12 l12" id="wholeCard">
                 <div class="row">
-                    <div class="col s12 m4 l4">
+                    <div class="col s12 m6 l6">
                         <!-- Meta Data -->
                         <div class="card z-depth-5" id="metaData">
                             <div class="card-content white-text">
                                 <h4 id="heroName"></h4>
                                 <div class="row">
-                                    <div class="col s6">
+                                    <div class="col s12 m12 l6 xl8">
                                         <img id="thumbnail" src="https://via.placeholder.com/120">
                                     </div>
-                                    <div class="col s6">
+                                    <div class="col s12 m12 l6 xl4">
                                         <h5></h5>
                                         <div id="heroNumbers"></div>
                                     </div>
@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m8 l8">
+                    <div class="col s12 m6 l6">
                         <!-- Gif Area -->
                         <div class="col s12 m12 l12">
                             <div class="card-image center">
@@ -115,7 +115,7 @@
                 <nav class="nav-extended" id="makeGone">
                     <!-- Popular Character Suggestions -->
                     <div class="nav-wrapper z-depth-5" id="popChars">
-                        <a class="brand-logo" id="popCharsTitle">Popular Characters:</a>
+                        <a class="brand-logo valign-wrapper" id="popCharsTitle">Popular Characters:</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper">
                             <li><a data-character="iron man">Iron Man</a></li>
                             <li><a data-character="hulk">Hulk</a></li>
@@ -149,11 +149,6 @@
                         <a class="waves-effect white-text sidenav-close" data-character="wolverine">Wolverine</a>
                     </li>
                 </ul>
-
-                <!-- <li class="favorite-char valign-wrapper">
-                    <img width="56px" src="${character.thumbnail}" style="display: inline;">
-                    <a class="favorite-text center-align flow-text" data-character="${character.name}" style="display: inline;">${character.name}</a>
-                  </li> -->
             </div>
         </div>
 
