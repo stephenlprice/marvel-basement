@@ -15,6 +15,19 @@ div#mainHeader a.brand-logo.center{
     font-size: 60px;
 }
 
+/* Gif iframe */
+iframe#heroGif {
+    overflow: hidden;
+}
+
+/* Contains gif iframe */
+div.card-image.center {
+    margin-top: 1%;
+    background-color: RGBA(42,49,50,0.75);
+    height: auto;
+    width: 100%;
+}
+
 #popularCharacters {
     padding: 0;
 }
@@ -115,11 +128,6 @@ div#popChars ul#nav-mobile li a {
 
 #heroName {
     margin-top: 0rem;
-}
-
-#heroGif {
-    margin-top: 1%;
-    border: none;
 }
 
 #popCharsTitle {
