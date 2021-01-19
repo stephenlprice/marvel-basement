@@ -1,7 +1,7 @@
 var character = "hulk";
 var favs = JSON.parse(localStorage.getItem("favorites")) || [];
 // Flag to toggle requests between mock and prod servers for AJAX
-var mockFlag = true;
+var mockFlag = false;
 
 // Initialize the page with preset data
 function init() {
