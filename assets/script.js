@@ -13,6 +13,7 @@ function init() {
     var recentChar = favs.length - 1;
     var initChar = favs[recentChar];
     localCharacter(initChar);
+    renderFavorites();
   }
 }
 
@@ -246,6 +247,7 @@ function pushLocal(marvelObj, gifObj) {
     }
     // Write favs array to local storage
     localStorage.setItem("favorites", JSON.stringify(favs));
+    renderFavorites();
 
   }
 }
@@ -261,6 +263,27 @@ function localCharacter(character) {
   $("#heroNumbers").append(/*html*/`<p>Stories: ${character.stories}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Events: ${character.events}</p>`);
   $("iframe#heroGif").attr("src", character.gif);  
+}
+
+// Add characters from local storage to the favorites list
+function renderFavorites() {
+   // Clear the existing favorites list to replace with new data
+   $("ul#dropdown1").empty();
+  
+  var favorites = JSON.parse(localStorage.getItem("favorites"));
+
+  // If local storage is empty, log feedback
+  if (favorites.length <= 0) {
+    console.log("No favorites found! Search a character to add to your favorites list...");
+  }
+  // For every element in the array, write a list item for that character
+  else {
+    favorites.forEach(function(character) {
+      $("ul#dropdown1").append(/*html*/`
+        <li><a data-character="${character.name}">${character.name}</a></li>
+      `);
+    });
+  }
 }
 
 init();
