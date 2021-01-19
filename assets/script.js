@@ -10,6 +10,7 @@ function init() {
     getCharacter(character);
   }
   else {
+    // On first page display the hulk
     var recentChar = favs.length - 1;
     var initChar = favs[recentChar];
     localCharacter(initChar);
@@ -17,52 +18,48 @@ function init() {
   }
 }
 
-// Dropdown Button that displays Favorite Characters
+// Initialize event listeners after the document loads
 $(document).ready(function(){
   // Initialize materialize event listeners
   $('.materialboxed').materialbox();
   $('.dropdown-trigger').dropdown();
   $('.sidenav').sidenav();
 
+  // Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
+  $("form#searchForm").on("submit", function(event) {
+    event.preventDefault();
+    var character = $("input#search").val().trim().toLowerCase();
+    searchCharacter(character);
+    $("input#search").val("");
+  });
 
-});
+  // Calls searchCharacter() when a user clicks on the search icon
+  $("label.label-icon").on("click", function(event) {
+    event.preventDefault();
+    var character = $("input#search").val().trim().toLowerCase();
+    searchCharacter(character);
+    $("input#search").val("");
+  });
 
+  // Clear the search bar of text
+  $("i#clearSearch").on("click", function(event) {
+    event.preventDefault();
+    $("input#search").val("");
+  });
 
+  // Calls searchCharacter() with the provided 'data-character' attribute from Popular Characters
+  $("ul#nav-mobile li a").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).attr("data-character");
+    searchCharacter(character);
+  });
 
-// Calls searchCharacter() when a user presses the 'enter' key or submit on an active form
-$("form#searchForm").on("submit", function(event) {
-  event.preventDefault();
-  var character = $("input#search").val().trim().toLowerCase();
-  searchCharacter(character);
-  $("input#search").val("");
-});
-
-// Calls searchCharacter() when a user clicks on the search icon
-$("label.label-icon").on("click", function(event) {
-  event.preventDefault();
-  var character = $("input#search").val().trim().toLowerCase();
-  searchCharacter(character);
-  $("input#search").val("");
-});
-
-// Clear the search bar of text
-$("i#clearSearch").on("click", function(event) {
-  event.preventDefault();
-  $("input#search").val("");
-});
-
-// Calls searchCharacter() with the provided 'data-character' attribute from Popular Characters
-$("ul#nav-mobile li a").on("click", function(event) {
-  event.preventDefault();
-  var character = $(this).attr("data-character");
-  searchCharacter(character);
-});
-
-// Calls searchCharacter() with data provided by Popular Characters from sidebar on mobile
-$("ul#slide-out li a").on("click", function(event) {
-  event.preventDefault();
-  var character = $(this).attr("data-character");
-  searchCharacter(character);
+  // Calls searchCharacter() with data provided by Popular Characters from sidebar on mobile
+  $("ul#slide-out li a").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).attr("data-character");
+    searchCharacter(character);
+  });
 });
 
 // Uses value from search form and calls on getCharacter with built in caching
@@ -294,7 +291,7 @@ function renderFavorites() {
       $("ul#dropdown1").prepend(/*html*/`
         <li class="favorite-char valign-wrapper">
           <img width="56px" src="${character.thumbnail}" style="display: inline;">
-          <a class="favorite-text center-align" data-character="${character.name}" style="display: inline;">${character.name}</a>
+          <a class="favorite-text center-align flow-text" data-character="${character.name}" style="display: inline;">${character.name}</a>
         </li>
       `);
     });
