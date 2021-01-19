@@ -73,7 +73,6 @@ $(document).ready(function(){
 function searchCharacter(character) {
   // If character input is undefined, null or empty, return message/
   if (!character || character === null || character === undefined || character === "") {
-    console.log("please provide a character name");
   }
   // Set charFound flag to true if a matching name in favs array was found for character input
   else {
@@ -81,7 +80,6 @@ function searchCharacter(character) {
     for (var i = 0; i < favs.length; i++) {
       if (favs[i].name === character) {
         charFound = true;
-        console.log(character + " was found in local storage!");
         // Render character from local storage to the page
         localCharacter(favs[i]);
         break;
@@ -89,7 +87,6 @@ function searchCharacter(character) {
     }
     // If after previous for loop, character still not found, then request data from APIs
     if (charFound === false) {
-      console.log(character + " was not found, requesting external data...");
       getCharacter(character);
     }
   }
@@ -137,8 +134,6 @@ function getCharacter(character) {
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(url);
-    console.log(response);
     renderCharacter(response);
     var marvelObj = response;
     getGif(character, marvelObj);
@@ -204,8 +199,6 @@ function getGif(character, marvelObj) {
   }
 
   $.ajax(settings).done(function (response) {
-    console.log(url);
-    console.log(response);
     renderGif(response);
     var gifObj = response;
     pushLocal(marvelObj, gifObj);
@@ -229,13 +222,11 @@ function pushLocal(marvelObj, gifObj) {
   for (var i = 0; i < favs.length; i++) {
     if (marvelObj.data.results[0].name === favs[i].name) {
       charHave = true;
-      console.log(favs[i].name + " was found in local storage! Duplicate will not be saved...");
       break;
     }
   }
   // If after previous for loop, character still not found, then request data from APIs
   if (charHave === false) {
-    console.log(marvelObj.data.results[0].name.toLowerCase() + " is a new favorite! Saved to local storage...");
     var name = marvelObj.data.results[0].name;
     var description = marvelObj.data.results[0].description;
     var comics = marvelObj.data.results[0].comics.available;
@@ -293,7 +284,6 @@ function renderFavorites() {
 
   // If local storage is empty, log feedback
   if (favorites.length <= 0) {
-    console.log("No favorites found! Search a character to add to your favorites list...");
   }
   // For every element in the array, write a list item for that character
   else {
