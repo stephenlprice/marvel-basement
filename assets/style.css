@@ -43,14 +43,22 @@ html {
         url(images/back2.png) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
-
+@media only screen and (max-width: 2560px) {
+    iframe#heroGif {
+        height: 220px;
+    }
+}
 
 @media only screen and (max-width: 992px) {
     #popCharsTitle {
         left: 22%;
+    }
+
+    iframe#heroGif {
+        height: 220px;
     }
 }
 
@@ -61,5 +69,10 @@ html {
 
     #makeThicc {
         white-space: nowrap;
+    }
+
+    iframe#heroGif {
+        height: 220px;
+        width: 250px;
     }
 }
