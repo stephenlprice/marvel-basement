@@ -237,8 +237,6 @@ function pushLocal(marvelObj, gifObj) {
     var thumbnail = thumbnailHTTP.replace("http", "https");
     var gif = gifObj.data[0].embed_url;
 
-    console.log(thumbnail);
-
     // Object to be pushed to favs and stored in local storage when a character is searched
     var fav = {
       name: name.toLowerCase(),
