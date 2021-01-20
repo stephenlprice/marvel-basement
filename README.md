@@ -33,7 +33,6 @@ Once searched, the character will appear in the favorites dropdown menu for futu
 <br>
 
 ## :wrench: Specifications
-<br>
 
 ### APIs
 
