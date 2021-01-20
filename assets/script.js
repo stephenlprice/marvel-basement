@@ -273,6 +273,7 @@ function localCharacter(character) {
   $("#heroNumbers").append(/*html*/`<p>Stories: ${character.stories}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Events: ${character.events}</p>`);
   $("iframe#heroGif").attr("src", character.gif);  
+  console.log(character.gif);
 }
 
 // Add characters from local storage to the favorites list
@@ -296,6 +297,13 @@ function renderFavorites() {
       `);
     });
   }
+
+  // Calls searchCharacter() with data provided by Favorite Characters from dropdown
+  $("ul#dropdown1 li").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).children("a").attr("data-character");
+    searchCharacter(character);
+  });  
 }
 
 init();
