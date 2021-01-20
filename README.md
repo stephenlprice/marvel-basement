@@ -60,5 +60,7 @@ Once searched, the character will appear in the favorites dropdown menu for futu
 Made with :heart: by:
 
 [Stephen Price](https://github.com/stephenlprice)
+
 [Dave Threlkeld](https://github.com/Dethrelkeld)
+
 [Jose Cordova](https://github.com/JoseCordova42)
