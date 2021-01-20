@@ -28,8 +28,6 @@ A gif relevant to the character, and a brief description is also displayed. The 
 
 Once searched, the character will appear in the favorites dropdown menu for future reference. On smaller devices, Popular Characters can be swiped from a side bar on the lefthand side. Searches are stored locally for improved performance and to avoid API calls.
 
-
-<hr>
 <br>
 
 ## :wrench: Specifications
