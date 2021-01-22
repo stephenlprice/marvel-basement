@@ -143,11 +143,11 @@ function getCharacter(character) {
 // Writes character data from the Marvel API to the page
 function renderCharacter(marvel) {
   emptyContent();
+  var thumbnail = marvel.data.results[0].thumbnail.path + "." + marvel.data.results[0].thumbnail.extension;
   $("#heroName").text(marvel.data.results[0].name);
   $("#descriptionText").text(marvel.data.results[0].description);
   $("div.card-content h5").text("Appears In:");
-  $("img#thumbnail").attr("src", marvel.data.results[0].thumbnail.path + "." + 
-    marvel.data.results[0].thumbnail.extension);
+  $("img#thumbnail").attr("src", thumbnail.replace("http", "https"));
   $("#heroNumbers").append(/*html*/`<p>Comics: ${marvel.data.results[0].comics.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Series: ${marvel.data.results[0].series.available}</p>`);
   $("#heroNumbers").append(/*html*/`<p>Stories: ${marvel.data.results[0].stories.available}</p>`);
@@ -227,13 +227,14 @@ function pushLocal(marvelObj, gifObj) {
   }
   // If after previous for loop, character still not found, then request data from APIs
   if (charHave === false) {
+    var thumbnailHTTP = marvelObj.data.results[0].thumbnail.path + "." + marvelObj.data.results[0].thumbnail.extension;
     var name = marvelObj.data.results[0].name;
     var description = marvelObj.data.results[0].description;
     var comics = marvelObj.data.results[0].comics.available;
     var series = marvelObj.data.results[0].series.available;
     var stories = marvelObj.data.results[0].stories.available;
     var events = marvelObj.data.results[0].events.available;
-    var thumbnail = marvelObj.data.results[0].thumbnail.path + "." + marvelObj.data.results[0].thumbnail.extension;
+    var thumbnail = thumbnailHTTP.replace("http", "https");
     var gif = gifObj.data[0].embed_url;
 
     // Object to be pushed to favs and stored in local storage when a character is searched
@@ -296,6 +297,13 @@ function renderFavorites() {
       `);
     });
   }
+
+  // Calls searchCharacter() with data provided by Favorite Characters from dropdown
+  $("ul#dropdown1 li").on("click", function(event) {
+    event.preventDefault();
+    var character = $(this).children("a").attr("data-character");
+    searchCharacter(character);
+  });  
 }
 
 init();

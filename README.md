@@ -4,46 +4,60 @@
 
 <br>
 
-### Overview
-A website to search for characters from the Marvel universe that will display useful metadata and descriptions along with animated gifs.
+## Overview
+A website that searches for characters from the Marvel universe, displaying useful metadata and descriptions along with animated gifs.
 
-User Story:
+<br>
+
+:bust_in_silhouette: **User Story:**
+```
 As a comic nerd.
-I Want the rundown of my favorite characters accompanied by a cool gif.
-So I Can learn more about the marvel universe in a pleasing UI.
+I want the rundown of my favorite characters accompanied by a relevant gif.
+So I may learn more about the marvel universe in a pleasing UI.
+```
 
 <hr>
 <br>
 
 ![screenshot](./assets/images/MB-screenshot.png)
 
-### Usage
-User arives on page and has the option to search for a character in the search bar at the top of the page or choose from a list of popular characters at the bottom of the page. If the user choses search, they can type in the name of a character, click the search icon, and the page will populate with the character's name, image, number of comic/series/stories/events they appear in. A gif relevant to the character, and a brief description is also displayed. The same will occur in Popular Characters but from a predetermined list of characters. Once searched the character will appear in the favorites dropdown menu to potentially be selected again. On smaller devices, Popular Characters becomes a side bar. Searches are stored locally for fast retrieval in the future.
+## :telescope: Usage
+When the user arrives on the website they have the option to search for a character in the search bar or choose from a list of popular characters at the bottom of the page. To launch a search, type in the name of a character and click the search icon or hit 'enter'. The page will populate with the character's name and thumbnail as well as a count of the comics, series, stories and events they appear in. 
 
+A gif relevant to the character, and a brief description is also displayed. The same functionality occurs when a user selects an option from the 'Popular Characters' list. 
 
-<hr>
+Once searched, the character will appear in the favorites dropdown menu for future reference. On smaller devices, Popular Characters can be swiped from a side bar on the lefthand side. Searches are stored locally for improved performance and to avoid API calls.
+
 <br>
 
-### Specifications
-1. APIs
+## :wrench: Specifications
 
-    Marvel API: https://developer.marvel.com/docs 
+### APIs
 
-    Giphy API: https://developers.giphy.com/  
+- [Marvel API](https://developer.marvel.com/docs)
+- [Giphy API](https://developers.giphy.com/)
 
-2. CSS Frameworks
+### CSS Framework
+- [Materialize](https://materializecss.com/)
 
-    Materialize: https://materializecss.com/
+### Libraries
+- [jQuery](https://jquery.com/)
+- [Google Fonts](https://fonts.google.com/specimen/Bangers#standard-styles)
 
-    Google Fonts: https://fonts.google.com/specimen/Bangers#standard-styles  
+### Tool Kits
+- [Stoplight](https://stoplight.io/)
+- [Font Awesome](https://fontawesome.com/start)
+- [iframely](https://iframely.com/)
 
-3. Jquery: https://jquery.com/ 
+### Others
+- [OpenAPI Specification](https://www.openapis.org/)
 
-4. Font Awesome: https://fontawesome.com/start 
-
-5. iframely: https://iframely.com/
-
-6. Stoplight: https://stoplight.io/
-
-<hr>
 <br>
+
+Made with :heart: by:
+
+[Stephen Price](https://github.com/stephenlprice)
+
+[Dave Threlkeld](https://github.com/Dethrelkeld)
+
+[Jose Cordova](https://github.com/JoseCordova42)
